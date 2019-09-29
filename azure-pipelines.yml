@@ -13,10 +13,17 @@ steps:
     projectDirectory: '.'
   displayName: 'Flutter Test'
 
+- task: InstallAppleCertificate@2
+  
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provProfileSecureFile: $(Veritas_Konferansen.mobileprovision)
+
 - task: FlutterBuild@0
   inputs:
     target: 'all'
     projectDirectory: '.'
+    debugMode: true
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publishing the Artifact: drop'
